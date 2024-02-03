@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int stoneGameVI(vector<int>& a, vector<int>& b) {
+        vector<pair<int,int>> tmp;
+        int alice=0,bob=0;
+        for(int i=0;i<a.size();i++) tmp.push_back({a[i]+b[i],i});
+        sort(tmp.rbegin(),tmp.rend());
+
+        for(int i=0;i<a.size();i++){
+            int ind = tmp[i].second;
+            if(i%2) bob += b[ind];
+            else alice += a[ind];
+        }
+        if(alice == bob) return 0;
+        return alice > bob ? 1 : -1;
+    }
+};
